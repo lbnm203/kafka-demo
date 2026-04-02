@@ -36,8 +36,7 @@ export function SpamPanel() {
 
       <p className={styles.desc}>
         Giả lập nhiều user gửi message <strong>cùng lúc</strong>.<br />
-        Quan sát log để hiểu Kafka phân phối ra sao. <br />
-        "testupdate jenkins"
+        Quan sát log để hiểu Kafka phân phối ra sao.
       </p>
 
       <div className={styles.controls}>
