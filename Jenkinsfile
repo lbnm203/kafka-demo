@@ -32,7 +32,9 @@ pipeline {
         stage('Build React/Vite (Frontend)') {
             steps {
                 dir('fe_kafka') {
-                    echo '📦 Installing dependencies and building Frontend...'
+                    echo '🧹 Cleaning old files and installing dependencies...'
+                    // Xóa node_modules và package-lock để tránh xung đột phiên bản cũ
+                    sh 'rm -rf node_modules package-lock.json'
                     sh 'npm install'
                     sh 'npm run build'
                 }
