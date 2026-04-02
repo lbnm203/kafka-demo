@@ -8,7 +8,7 @@ pipeline {
     }
 
     environment {
-        DOCKER_CMD = 'docker-compose' 
+        DOCKER_CMD = 'docker compose' 
     }
 
     stages {
