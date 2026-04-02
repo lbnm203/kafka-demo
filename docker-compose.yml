@@ -73,15 +73,26 @@ services:
   # ─────────────────────────────────────────────────────────
   # FRONTEND (React/Vite - dev mode)
   # ─────────────────────────────────────────────────────────
+  # frontend:
+  #   image: node:20-alpine # Bản alpine sẽ nhẹ hơn
+  #   container_name: frontend
+  #   working_dir: /app
+  #   volumes:
+  #     - ./fe_kafka:/app
+  #     - /app/node_modules # ✅ Giữ node_modules trong container, tránh xung đột với máy thật
+  #   ports:
+  #     - "5173:5173"
+  #   command: sh -c "npm install && npm run dev"
+  #   depends_on:
+  #     - app
   frontend:
-    image: node:20-alpine # Bản alpine sẽ nhẹ hơn
-    container_name: frontend
-    working_dir: /app
-    volumes:
-      - ./fe_kafka:/app
-      - /app/node_modules # ✅ Giữ node_modules trong container, tránh xung đột với máy thật
+    build:
+      context: ./fe_kafka
+      dockerfile: Dockerfile
+    container_name: frontend-prod
     ports:
-      - "5173:5173"
-    command: sh -c "npm install && npm run dev"
+      - "80:80" # Ánh xạ port web ra ngoài cho user truy cập
     depends_on:
       - app
+
+  
