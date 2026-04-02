@@ -8,10 +8,10 @@ import styles from './SpamPanel.module.css';
  * Xem log bên phải để thấy partition routing và race condition (hay không có).
  */
 export function SpamPanel() {
-  const [users, setUsers]           = useState(10);
+  const [users, setUsers] = useState(10);
   const [msgsPerUser, setMsgsPerUser] = useState(50);
-  const [running, setRunning]       = useState(false);
-  const [result, setResult]         = useState(null);
+  const [running, setRunning] = useState(false);
+  const [result, setResult] = useState(null);
 
   const handleSpam = async () => {
     setRunning(true);
@@ -35,8 +35,9 @@ export function SpamPanel() {
       </div>
 
       <p className={styles.desc}>
-        Giả lập nhiều user gửi message <strong>cùng lúc</strong>.<br/>
-        Quan sát log để hiểu Kafka phân phối ra sao.
+        Giả lập nhiều user gửi message <strong>cùng lúc</strong>.<br />
+        Quan sát log để hiểu Kafka phân phối ra sao. <br />
+        "testupdate jenkins"
       </p>
 
       <div className={styles.controls}>
@@ -75,26 +76,30 @@ export function SpamPanel() {
         {running ? '🚀 Spamming…' : '⚡ Start Spam'}
       </button>
 
-      {result && !result.error && (
-        <div className={styles.result}>
-          <div className={styles.resultRow}>
-            <span>Status</span><span className={styles.ok}>{result.status}</span>
+      {
+        result && !result.error && (
+          <div className={styles.result}>
+            <div className={styles.resultRow}>
+              <span>Status</span><span className={styles.ok}>{result.status}</span>
+            </div>
+            <div className={styles.resultRow}>
+              <span>Users</span><span>{result.users}</span>
+            </div>
+            <div className={styles.resultRow}>
+              <span>Msgs/User</span><span>{result.messagesPerUser}</span>
+            </div>
+            <div className={styles.resultRow}>
+              <span>Total</span><span className={styles.highlight}>{result.totalMessages?.toLocaleString()}</span>
+            </div>
           </div>
-          <div className={styles.resultRow}>
-            <span>Users</span><span>{result.users}</span>
-          </div>
-          <div className={styles.resultRow}>
-            <span>Msgs/User</span><span>{result.messagesPerUser}</span>
-          </div>
-          <div className={styles.resultRow}>
-            <span>Total</span><span className={styles.highlight}>{result.totalMessages?.toLocaleString()}</span>
-          </div>
-        </div>
-      )}
+        )
+      }
 
-      {result?.error && (
-        <div className={styles.error}>{result.error}</div>
-      )}
+      {
+        result?.error && (
+          <div className={styles.error}>{result.error}</div>
+        )
+      }
 
       {/* Explaining what to look for */}
       <div className={styles.explainBox}>
@@ -106,6 +111,6 @@ export function SpamPanel() {
           <li><strong>Không có race condition</strong> vì 1 partition = 1 thread</li>
         </ul>
       </div>
-    </div>
+    </div >
   );
 }
