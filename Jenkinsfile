@@ -7,6 +7,11 @@ pipeline {
         nodejs 'node20'
     }
 
+    options {
+        // Chỉ giữ lại log và dữ liệu của 3 lần Build gần nhất để tiết kiệm ổ cứng
+        buildDiscarder(logRotator(numToKeepStr: '3'))
+    }
+
     environment {
         DOCKER_CMD = 'docker compose' 
     }
