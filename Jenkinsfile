@@ -1,25 +1,29 @@
 pipeline {
     agent any
 
+    tools {
+        // Khai báo để Jenkins tự động nạp NodeJS vào PATH
+        // Tên 'node20' phải trùng với tên bạn đặt trong Manage Jenkins > Tools
+        nodejs 'node20'
+    }
+
     environment {
-        // Khai báo biến cần sử dụng cho Pipeline
         DOCKER_CMD = 'docker-compose' 
     }
 
     stages {
         stage('Checkout Code') {
             steps {
-                // Tự động kéo code từ branch đang cấu hình tại giao diện
                 checkout scm
-                echo 'Pull code thành công!'
+                echo '✅ Pull code thành công!'
             }
         }
 
         stage('Build Spring Boot (Backend)') {
             steps {
                 dir('be_kafka') {
-                    // Cấp quyền và chạy Gradle build để tạo file JAR (.jar)
                     sh 'chmod +x gradlew'
+                    // Sử dụng ./gradlew để đảm bảo đúng version Gradle của dự án
                     sh './gradlew clean build -x test' 
                 }
             }
@@ -28,7 +32,7 @@ pipeline {
         stage('Build React/Vite (Frontend)') {
             steps {
                 dir('fe_kafka') {
-                    // Cài library và build Frontend ra mục dist/
+                    echo '📦 Installing dependencies and building Frontend...'
                     sh 'npm install'
                     sh 'npm run build'
                 }
@@ -37,9 +41,9 @@ pipeline {
 
         stage('Build Docker Images & Deploy') {
             steps {
-                // Tắt các container hiện tại (nếu có), build lại image và up lên
-                echo 'Đang khởi động Docker Compose với source code mới...'
-                sh "${DOCKER_CMD} down"
+                echo '🚀 Đang khởi động Docker Compose với source code mới...'
+                // Dùng dấu nháy kép để bao quanh biến môi trường
+                sh "${DOCKER_CMD} down --remove-orphans"
                 sh "${DOCKER_CMD} up -d --build"
             }
         }
