@@ -1,0 +1,117 @@
+.panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 100%;
+  min-height: 0;
+}
+
+.header {
+  display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+}
+.icon { font-size: 20px; }
+.header h2 { font-size: 16px; font-weight: 600; flex: 1; }
+
+.wsStatus {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 600;
+  padding: 3px 10px; border-radius: 100px;
+  text-transform: uppercase; letter-spacing: .5px;
+}
+.connected    { background: rgba(0,212,170,0.15); color: var(--accent-green); border: 1px solid rgba(0,212,170,0.3); }
+.disconnected { background: rgba(239,68,68,0.15); color: var(--accent-red); border: 1px solid rgba(239,68,68,0.3); }
+.dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: currentColor; animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.stats {
+  display: flex; gap: 6px; flex-wrap: wrap; flex-shrink: 0;
+}
+.stat {
+  flex: 1; min-width: calc(20% - 6px); padding: 8px 4px; border-radius: var(--radius-sm);
+  background: var(--bg-elevated); border: 1px solid var(--border);
+  text-align: center;
+}
+.statLabel { font-size: 9px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 2px; }
+.statVal { font-size: 16px; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+
+/* Partition color overrides p0-p9 */
+.p0 .statVal, .p0.pBadge { color: var(--p0); }
+.p1 .statVal, .p1.pBadge { color: var(--p1); }
+.p2 .statVal, .p2.pBadge { color: var(--p2); }
+.p3 .statVal, .p3.pBadge { color: var(--p3); }
+.p4 .statVal, .p4.pBadge { color: var(--p4); }
+.p5 .statVal, .p5.pBadge { color: var(--p5); }
+.p6 .statVal, .p6.pBadge { color: var(--p6); }
+.p7 .statVal, .p7.pBadge { color: var(--p7); }
+.p8 .statVal, .p8.pBadge { color: var(--p8); }
+.p9 .statVal, .p9.pBadge { color: var(--p9); }
+
+.p0 { border-color: rgba(79,142,247,0.3) !important; }
+.p1 { border-color: rgba(0,212,170,0.3) !important; }
+.p2 { border-color: rgba(245,158,11,0.3) !important; }
+.p3 { border-color: rgba(167,139,250,0.3) !important; }
+.p4 { border-color: rgba(236,72,153,0.3) !important; }
+.p5 { border-color: rgba(6,182,212,0.3) !important; }
+.p6 { border-color: rgba(251,191,36,0.3) !important; }
+.p7 { border-color: rgba(16,185,129,0.3) !important; }
+.p8 { border-color: rgba(99,102,241,0.3) !important; }
+.p9 { border-color: rgba(244,63,94,0.3) !important; }
+
+.actions {
+  display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+}
+.clearBtn {
+  background: var(--bg-input); border: 1px solid var(--border);
+  color: var(--text-secondary); border-radius: var(--radius-sm);
+  padding: 6px 16px; cursor: pointer; font-size: 12px;
+  transition: all 0.2s; font-family: 'Inter', sans-serif;
+}
+.clearBtn:hover { border-color: var(--accent-red); color: var(--accent-red); }
+.hint { font-size: 11px; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+
+.logArea {
+  flex: 1; overflow-y: auto; min-height: 0;
+  background: var(--bg-base); border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  display: flex; flex-direction: column; gap: 3px;
+}
+
+.empty {
+  color: var(--text-muted); font-size: 13px;
+  text-align: center; padding: 40px 20px;
+  line-height: 1.8;
+}
+
+.logLine {
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 4px 8px; border-radius: 4px;
+  font-size: 12px; line-height: 1.5;
+  transition: background 0.1s;
+}
+.logLine:hover { background: var(--bg-elevated); }
+
+.pBadge {
+  font-size: 10px; font-weight: 700;
+  padding: 1px 5px; border-radius: 3px;
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.05);
+}
+.offset  { color: var(--text-muted); font-size: 11px; flex-shrink: 0; min-width: 40px; }
+.userId  { color: var(--accent-purple); font-weight: 600; flex-shrink: 0; min-width: 60px; }
+.content { color: var(--text-primary); flex: 1; word-break: break-word; }
+.thread  {
+  color: var(--text-muted); font-size: 10px;
+  flex-shrink: 0; max-width: 180px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}

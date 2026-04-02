@@ -1,0 +1,55 @@
+/* ============================================================
+   index.css — Global Reset & Design Tokens
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-base:      #0d0f14;
+  --bg-surface:   #161a24;
+  --bg-elevated:  #1e2333;
+  --bg-input:     #252c3e;
+
+  --accent-green:  #00d4aa;
+  --accent-blue:   #4f8ef7;
+  --accent-orange: #f59e0b;
+  --accent-red:    #ef4444;
+  --accent-purple: #a78bfa;
+
+  /* Partition colors for visual distinction */
+  --p0: #4f8ef7; --p1: #00d4aa; --p2: #f59e0b;
+  --p3: #a78bfa; --p4: #ec4899; --p5: #06b6d4;
+  --p6: #fbbf24; --p7: #10b981; --p8: #6366f1; --p9: #f43f5e;
+
+  --text-primary:   #e8eaf0;
+  --text-secondary: #8892a4;
+  --text-muted:     #4a5568;
+
+  --border:        #2a3146;
+  --border-hover:  #3d4d6e;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.4);
+  --shadow-glow: 0 0 20px rgba(0,212,170,0.15);
+}
+
+html, body, #root {
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-surface); }
+::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 3px; }
