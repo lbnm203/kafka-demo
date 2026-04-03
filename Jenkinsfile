@@ -24,6 +24,16 @@ pipeline {
             }
         }
 
+        stage('Test Backend') {
+            steps {
+                dir('be_kafka') {
+                    sh 'chmod +x gradlew'
+                    echo '🧪 Running Unit Tests...'
+                    sh './gradlew test' 
+                }
+            }
+        }
+
         stage('Build Spring Boot (Backend)') {
             steps {
                 dir('be_kafka') {
