@@ -67,6 +67,10 @@ pipeline {
     }
 
     post {
+        always {
+            echo "=== PIPELINE EXECUTION COMPLETED ==="
+            junit allowEmptyResults: true, testResults: '**/build/test-results/test/*.xml'
+        }
         success {
             echo "✅ Build & Deploy thành công! Cụm Kafka, Backend và Frontend đã sẵn sàng."
         }
