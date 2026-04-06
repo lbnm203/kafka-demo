@@ -19,3 +19,4 @@ export const triggerSpam = (users = 10, messagesPerUser = 100) =>
  */
 export const getTopicInfo = () =>
   axios.get(`${BASE_URL}/topic-info`);
+
